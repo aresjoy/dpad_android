@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:id="@+id/dpad_qa_layout"
+    android:background="#eeeeee"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/dpad_qa"
+        android:layout_width="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="@string/dpad_qa_txt"
+        android:textSize="14sp"
+        android:textColor="#222222"
+        />
+    <TextView
+        android:id="@+id/dpad_qa_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="@string/dpad_vs"
+        android:layout_alignParentRight="true"
+        android:textSize="12sp"
+        android:textColor="#222222"
+        />
+</RelativeLayout>

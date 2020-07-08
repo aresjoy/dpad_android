@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@android:color/white"
+        android:paddingBottom="16dp"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/dpad_dialog_cancle"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/dpad_ic_cancle"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="16dp"
+            android:tint="#059ce6"
+            />
+
+        <ImageView
+            android:id="@+id/dpad_dialog_logo"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="#edeef2"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="16dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:layout_marginRight="16dp"
+            android:orientation="vertical"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="36dp"
+            android:layout_toRightOf="@+id/dpad_dialog_logo"
+            >
+            <TextView
+                android:id="@+id/dpad_dialog_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:ellipsize="end"
+                android:textSize="16sp"
+                android:text="-"
+                android:textColor="#333333"
+                />
+            <TextView
+                android:id="@+id/dpad_dialog_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:text="-"
+                android:gravity="left"
+                android:textSize="12sp"
+                android:textColor="#c6c6c6"
+                />
+            <TextView
+                android:id="@+id/dpad_dialog_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:ellipsize="end"
+                android:layout_marginTop="2dp"
+                android:text="-"
+                android:gravity="center"
+                android:background="@drawable/dpad_bg_round"
+                android:textSize="12sp"
+                android:textColor="@android:color/white"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+
+        android:background="#edeef2"
+        >
+        <TextView
+            android:id="@+id/dpad_dialog_content"
+            android:layout_width="match_parent"
+            android:textSize="14sp"
+            android:textColor="#555658"
+            android:layout_margin="16dp"
+            android:layout_height="match_parent" />
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/dpad_dialog_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#059ce6"
+        android:textSize="20sp"
+        android:text="-"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        />
+
+</LinearLayout>

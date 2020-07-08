@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <drawable name="admx_backgroundIdle">#ffffffff</drawable>
+    <drawable name="admx_backgroundPressed">#55ffffff</drawable>
+    <!--<string name="app_name">CSScanLib</string>-->
+    <string name="mBeaconApplicationName">mBeacon SDK 테스트 앱</string>
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="dp_cancle">#059ce6</color>
+    <color name="dp_title">#222222</color>
+    <color name="db_default">#ffffff</color>
+    <color name="db_press">#dddddd</color>
+
+</resources>

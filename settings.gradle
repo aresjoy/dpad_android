@@ -1,0 +1,5 @@
+include ':okgo'
+include ':okgo_extends'
+include ':dpad_aos_sdk_1.8.3'
+include ':app'
+rootProject.name = "DpAdSample"

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/dpad_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#f5f5f5"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/dpad_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="16dp"
+            android:layout_centerVertical="true"
+            android:text="적립이력 보기"
+            android:textColor="@color/dp_title"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/dpad_cancle"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/dpad_ic_cancle" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#b5b5b5"
+        />
+    <com.genius.baselib.frame.view.widget.AutoSwipeRefreshLayout
+        android:id="@+id/dpad_autorefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/dpad_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+    </com.genius.baselib.frame.view.widget.AutoSwipeRefreshLayout>
+
+
+</LinearLayout>

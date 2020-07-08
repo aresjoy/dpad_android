@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/dpad_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#f5f5f5"
+        android:orientation="horizontal">
+<!--        <WebView
+            android:id="@+id/id_webview"
+            android:layout_marginTop="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></WebView>-->
+        <TextView
+            android:id="@+id/dpad_qaview"
+            android:layout_width="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:text="@string/dpad_qa_txt"
+            android:textSize="12sp"
+            android:textColor="#222222"
+            />
+
+        <TextView
+            android:id="@+id/dpad_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/app_title"
+            android:textColor="@color/dp_title"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/dpad_cancle"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/dpad_ic_cancle" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/dpad_title_layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#b5b5b5"
+        />
+    <com.genius.baselib.frame.view.widget.AutoSwipeRefreshLayout
+        android:id="@+id/dpad_autorefresh"
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/dpad_recyclerview"
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+
+    </com.genius.baselib.frame.view.widget.AutoSwipeRefreshLayout>
+
+
+</LinearLayout>
