@@ -74,7 +74,7 @@ public class DPAD {
      * @return
      */
     public static int getSDKVersion() {
-        return com.dpad.offerwall.BuildConfig.VERSION_CODE;
+        return 183;//com.dpad.offerwall.BuildConfig.VERSION_CODE;
     }
 
     /**
@@ -312,7 +312,7 @@ public class DPAD {
 
     public static void showdialog(final Activity activity, final OnRequestCallback onRequestCallback) {
         AlertDialog.Builder dialogBuilder = Utils_Alert.getDialogBuilder(activity, 0, 0, false, 0, null, 0, null);
-        View view = LayoutInflater.from(activity).inflate(R.layout.layotu_dialog,null);
+        View view = LayoutInflater.from(activity).inflate(R.layout.layout_dialog,null);
         dialogBuilder.setView(view);
         final AlertDialog alertDialog = dialogBuilder.create();
 

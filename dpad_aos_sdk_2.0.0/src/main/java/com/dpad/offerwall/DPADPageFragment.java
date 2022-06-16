@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.dpad.offerwall.bean.DPAdInfo;
+import com.dpad.offerwall.bean.DPAdTabInfo;
 import com.genius.baselib.PreferenceUtil;
 import com.genius.baselib.base.LazyBaseFragment;
 import com.genius.baselib.frame.center.CStatic;
@@ -38,11 +42,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-/**
- * Created by Rocklee on 2017-05-03.
- */
+public class DPADPageFragment  extends LazyBaseFragment {
 
-public class DPADOfferwallFragment extends LazyBaseFragment{
 
 
     private AutoSwipeRefreshLayout dpad_autorefresh;
@@ -54,13 +55,10 @@ public class DPADOfferwallFragment extends LazyBaseFragment{
     @Override
     protected void onCreateViewLazy(Bundle savedInstanceState) {
         super.onCreateViewLazy(savedInstanceState);
-        setContentView( R.layout.dpad_activity);
+        setContentView( R.layout.dpad_page_fragment);
 
+        DPAdTabInfo tabInfo  = getArguments().getParcelable("data"); //TODO
 
-        View dpad_title_layout = findViewBId(R.id.dpad_title_layout);
-        dpad_title_layout.setVisibility(View.GONE);
-        findViewBId(R.id.dpad_title_layout_bottom).setVisibility(View.GONE);
-        TextView dpad_qaview = findViewBId(R.id.dpad_qaview);
         dpad_autorefresh = findViewBId(R.id.dpad_autorefresh);
         dpad_autorefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -82,22 +80,7 @@ public class DPADOfferwallFragment extends LazyBaseFragment{
         dpad_recyclerview.setHasFixedSize(false);
         dpad_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            dpad_qaview.setText(Html.fromHtml(getString(R.string.dpad_qa_txt), 0));
-        } else {
-            dpad_qaview.setText(Html.fromHtml(getString(R.string.dpad_qa_txt)));
-        }
-        dpad_qaview.setOnClickListener(new FilterdOnClickListener() {
-            @Override
-            public void onFilterdClick(View v) {
-                Intent intent = new Intent(getActivity(), DPADQaActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                if (getArguments() != null) {
-                    intent.putExtras(getArguments());
-                }
-                getActivity().startActivity(intent);
-            }
-        });
+
         adapter = new MultiItemTypeAdapter<DPAdInfo>(getActivity(), new ArrayList<DPAdInfo>());
         adapter.addItemViewDelegate(new Delga());
         adapter.addItemViewDelegate(new Delga2());
@@ -114,6 +97,16 @@ public class DPADOfferwallFragment extends LazyBaseFragment{
         notifyAdapter.addFootView(dpadQaLayout);
 
 
+        checkPermission();
+    }
+
+    @Override
+    protected void onResumeLazy() {
+        super.onResumeLazy();
+        checkPermission();
+    }
+
+    private void checkPermission() {
         if(DPAD.checkPermissionAgree(getActivity(), new OnRequestCallback() {
             @Override
             public void onResult(boolean result) {
@@ -165,9 +158,12 @@ public class DPADOfferwallFragment extends LazyBaseFragment{
         public void convert(ViewHolder holder, final DPAdInfo dpAdInfo, final int position) {
 
             ImageView dpad_item_icon = holder.getView(R.id.dpad_item_icon);
-            if (!TextUtils.isEmpty(dpAdInfo.getIcon()) && getActivity()!=null && getActivity().isFinishing()==false) {
-                Glide.with(getActivity()).load(dpAdInfo.getIcon()).into(dpad_item_icon);
-            }
+//            if (!TextUtils.isEmpty(dpAdInfo.getIcon()) && getActivity()!=null && getActivity().isFinishing()==false) {
+            Glide.with(getActivity()).load(dpAdInfo.getIcon()).transform(
+                    new CenterCrop(),
+                    new RoundedCorners((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,6f,getResources().getDisplayMetrics()))
+            ).into(dpad_item_icon);
+//            }
             try {
                 holder.setText(R.id.dpad_item_title, dpAdInfo.getTitle()+"");
                 holder.setText(R.id.dpad_item_des, dpAdInfo.getDescription()+"");
@@ -210,7 +206,7 @@ public class DPADOfferwallFragment extends LazyBaseFragment{
                 if (!dpAdInfo.isParted() || !dpAdInfo.getRevenue_type().toLowerCase().equalsIgnoreCase("cpi")) {
                     //part
 
-                        CallAdPart(dpAdInfo);
+                    CallAdPart(dpAdInfo);
 
 
                 } else {
@@ -312,7 +308,7 @@ public class DPADOfferwallFragment extends LazyBaseFragment{
     }
 
     private void CallAdComplete(final DPAdInfo dpAdInfo) {
-         showMessageLoading("완료 확인중 입니다.");
+        showMessageLoading("완료 확인중 입니다.");
         DPAD.conFirmComplete(getActivity(), dpAdInfo, new AdComCallBack() {
             @Override
             public void onSuccess(String msg) {
@@ -345,7 +341,7 @@ public class DPADOfferwallFragment extends LazyBaseFragment{
 
             @Override
             public void onComplete() {
-              cancleMessageLoading();
+                cancleMessageLoading();
             }
         });
     }
@@ -380,7 +376,7 @@ public class DPADOfferwallFragment extends LazyBaseFragment{
 
             @Override
             public void onComplete() {
-               cancleMessageLoading();
+                cancleMessageLoading();
             }
         });
 
@@ -484,5 +480,4 @@ public class DPADOfferwallFragment extends LazyBaseFragment{
 
         }
     }
-
 }

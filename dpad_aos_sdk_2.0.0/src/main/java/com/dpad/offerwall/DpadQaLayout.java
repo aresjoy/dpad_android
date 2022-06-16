@@ -13,7 +13,6 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 
 import com.genius.baselib.inter.FilterdOnClickListener;
-import com.starstudio.frame.net.BuildConfig;
 
 /**
  * Created by Rocklee on 2017-04-24.
@@ -36,7 +35,7 @@ public class DpadQaLayout extends RelativeLayout {
         }else{
             dpad_qa.setText(Html.fromHtml(context.getString(R.string.dpad_qa_txt)));
         }
-        dpad_qa_version.setText(context.getString(R.string.dpad_vs,""+ com.dpad.offerwall.BuildConfig.VERSION_NAME+com.dpad.offerwall.BuildConfig.VERSION_CODE));
+        dpad_qa_version.setText(context.getString(R.string.dpad_vs,""+ DPAD.getSDKVersion()+""));
 
         inflate.findViewById(R.id.dpad_qa_layout).setOnClickListener(new FilterdOnClickListener() {
             @Override

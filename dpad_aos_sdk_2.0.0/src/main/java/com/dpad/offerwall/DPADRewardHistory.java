@@ -1,5 +1,7 @@
 package com.dpad.offerwall;
 
+import static android.nfc.tech.MifareUltralight.PAGE_SIZE;
+
 import android.content.res.ColorStateList;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,8 +29,6 @@ import com.genius.commonrecyclerviewadpater.wrapper.HeaderAndFooterWrapper;
 import com.sera.volleyhelper.imp.CallBackListener;
 
 import java.util.ArrayList;
-
-import static android.nfc.tech.MifareUltralight.PAGE_SIZE;
 
 /**
  * Created by Rocklee on 2017-04-25.

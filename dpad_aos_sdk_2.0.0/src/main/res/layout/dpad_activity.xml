@@ -41,6 +41,7 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_alignParentRight="true"
+            android:padding="8dp"
             android:layout_centerVertical="true"
             android:layout_marginRight="16dp"
             android:src="@drawable/dpad_ic_cancle" />
@@ -52,18 +53,12 @@
         android:layout_height="0.5dp"
         android:background="#b5b5b5"
         />
-    <com.genius.baselib.frame.view.widget.AutoSwipeRefreshLayout
-        android:id="@+id/dpad_autorefresh"
-        android:background="#ffffff"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/dpad_recyclerview"
-            android:background="#ffffff"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
 
-    </com.genius.baselib.frame.view.widget.AutoSwipeRefreshLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:background="#ffffff"
+        android:id="@+id/contentframe"
+        android:layout_height="match_parent"/>
 
 
 </LinearLayout>
