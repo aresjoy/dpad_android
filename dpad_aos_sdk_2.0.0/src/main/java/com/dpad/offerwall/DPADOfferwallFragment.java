@@ -15,9 +15,12 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.dpad.offerwall.bean.DPAdInfo;
 import com.dpad.offerwall.bean.DPAdTabInfo;
+import com.genius.baselib.PreferenceUtil;
 import com.genius.baselib.base.LazyBaseFragment;
 import com.genius.baselib.frame.api.DPAdTabList_API;
+import com.genius.baselib.frame.center.CStatic;
 import com.sera.volleyhelper.imp.CallBackListener;
+import com.sera.volleyhelper.imp.OnRequestCallback;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
@@ -47,7 +50,81 @@ public class DPADOfferwallFragment extends LazyBaseFragment {
         magicIndicator = findViewBId(R.id.indicator);
         viewpager2 = findViewBId(R.id.viewpager2);
 
-        tabInit();
+        checkPermission();
+    }
+
+    @Override
+    protected void onResumeLazy() {
+        super.onResumeLazy();
+
+    }
+
+    private void CallAdList( ) {
+                   showMessageLoading("로딩중");
+
+            DPAD.getAdList(getActivity(), new AdListCallBack() {
+                @Override
+                public void onSuccess(List<DPAdInfo> dpads) {
+                         itemList.clear();
+                        itemList.addAll(dpads);
+                        tabInit();
+                }
+
+                @Override
+                public void onFailed(int code, String msg) {
+                    if(getContext()!=null && getActivity()!=null && !getActivity().isFinishing()){
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext()).setMessage("로딩실패 하였습니다. 재시도 하시겠습니까?");
+                        builder.setCancelable(false);
+                        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                CallAdList();
+                            }
+                        });
+                        builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                        AlertDialog alertDialog = builder.create();
+                        alertDialog.setCanceledOnTouchOutside(false);
+                        alertDialog.show();
+                    }
+                }
+
+                @Override
+                public void onComplete() {
+                    cancleMessageLoading();
+                }
+            });
+    }
+    private void checkPermission() {
+        if(DPAD.checkPermissionAgree(getActivity(), new OnRequestCallback() {
+            @Override
+            public void onResult(boolean result) {
+                if (result) {
+                   CallAdList();
+                }
+            }
+        })){
+            long value = PreferenceUtil.getInstance(getActivity().getApplicationContext()).getValue(CStatic.SP_ENDTIME, 0L);
+            if (!PreferenceUtil.getInstance(getActivity().getApplicationContext()).getValue(CStatic.SP_ALLOW, false) && value!=0L && System.currentTimeMillis()>value) {
+                DPAD.showdialog(getActivity(), new OnRequestCallback() {
+                    @Override
+                    public void onResult(boolean result) {
+                        if (result) {
+                            CallAdList();
+                        }
+                    }
+                });
+
+            }else{
+                CallAdList( );
+            }
+        }else{
+
+        }
     }
 
     private void tabUI() {
@@ -126,6 +203,18 @@ public class DPADOfferwallFragment extends LazyBaseFragment {
         });
     }
 
+    private boolean findItem(DPAdTabInfo dpAdTabInfo){
+        if(dpAdTabInfo.type_list.isEmpty()){
+            return true ;
+        }
+        for(int i=0;i< itemList.size();i++){
+            if(dpAdTabInfo.type_list.contains( itemList.get(i).getRevenue_type())){
+                return true ;
+            }
+        }
+        return false ;
+    }
+
     private void tabInit() {
         DPAdTabList_API tabList_api = new DPAdTabList_API(getContext());
         tabList_api.request(getContext(), new CallBackListener<DPAdTabList_API>() {
@@ -142,7 +231,14 @@ public class DPADOfferwallFragment extends LazyBaseFragment {
             @Override
             public void onResponse(DPAdTabList_API dpAdTabList_api) {
                 tabList.clear();
-                tabList.addAll(dpAdTabList_api.dpAdTabLists);
+
+                for(int i=0;i<dpAdTabList_api.dpAdTabLists.size();i++){
+                    DPAdTabInfo dpAdTabInfo = dpAdTabList_api.dpAdTabLists.get(i);
+                    if(findItem(dpAdTabInfo)){
+                        tabList.add(dpAdTabInfo);
+                    }
+
+                }
                 tabUI();
             }
 

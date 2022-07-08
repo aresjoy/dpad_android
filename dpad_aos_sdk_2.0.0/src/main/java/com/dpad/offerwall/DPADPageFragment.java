@@ -428,6 +428,9 @@ public class DPADPageFragment  extends LazyBaseFragment {
 
     private void CallAdList(Boolean fromSwipe ) {
         if (fromSwipe) {
+            if(!dpad_autorefresh.isRefreshing()) {
+                showMessageLoading("로딩중");
+            }
                DPAD.getAdList(getActivity(), new AdListCallBack() {
                 @Override
                 public void onSuccess(List<DPAdInfo> dpads) {
@@ -446,6 +449,7 @@ public class DPADPageFragment  extends LazyBaseFragment {
 
                 @Override
                 public void onComplete() {
+                    cancleMessageLoading();
                     if (dpad_autorefresh != null)
                         dpad_autorefresh.setRefreshing(false);
                 }

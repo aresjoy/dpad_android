@@ -121,7 +121,7 @@ public class CommonApi {
             stringBuilder.append("&");
             stringBuilder.append("user_id=" + URLEncoder.encode(DPAD.getUserId(), "utf8"));
             stringBuilder.append("&");
-            stringBuilder.append("ver=" + com.dpad.offerwall.BuildConfig.VERSION_CODE);
+            stringBuilder.append("ver=" + DPAD.getSDKVersion());
             stringBuilder.append("&");
             stringBuilder.append("mo=" + URLEncoder.encode(MODEL, "utf8"));
             stringBuilder.append("&");

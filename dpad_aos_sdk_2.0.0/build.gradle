@@ -45,11 +45,11 @@ dependencies {
     api 'com.google.code.gson:gson:2.8.9'
 
     api project(':okgo_extends')
-    implementation 'com.github.hackware1993:MagicIndicator:1.7.0'
-    implementation "androidx.viewpager2:viewpager2:1.0.0"
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    api 'com.github.hackware1993:MagicIndicator:1.7.0'
+    api "androidx.viewpager2:viewpager2:1.0.0"
+    api 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 //    compile 'org.altbeacon:android-beacon-library:2.9@aar'
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    api 'com.github.bumptech.glide:glide:4.11.0'
+    api 'com.github.bumptech.glide:compiler:4.11.0'
 
 }
