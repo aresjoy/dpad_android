@@ -12,9 +12,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/dpad_aos_sdk_2.0.0" />
-            <option value="$PROJECT_DIR$/okgo" />
-            <option value="$PROJECT_DIR$/okgo_extends" />
           </set>
         </option>
       </GradleProjectSettings>

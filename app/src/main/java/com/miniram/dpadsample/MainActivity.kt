@@ -9,7 +9,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        DPAD.init(this, "6t4dzjhs", "rbtgcx5wyqv0iomeswv3kyjjbhskdz", System.currentTimeMillis().toString());
+        DPAD.init(this, "-", "-", System.currentTimeMillis().toString());
         findViewById<View>(R.id.button1).setOnClickListener {
             DPAD.showOfferwall(this@MainActivity)
         }
