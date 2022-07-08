@@ -14,9 +14,7 @@ repositories {
         dirs 'libs'
     }
 }
-dependencies {
-    
-
+dependencies { 
     //--------------추가 해야될 library
     implementation(name: 'dpad_aos_sdk_2.0.0-release', ext: 'aar')
     implementation(name: 'okgo-release', ext: 'aar')
@@ -46,7 +44,6 @@ dependencies {
 ```
     //초기화 
     DPAD.init(this, "-", "-", System.currentTimeMillis().toString());
- 
 ```
 ```
     // 적립화면 열기 
