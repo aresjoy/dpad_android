@@ -35,20 +35,20 @@ dependencies {
 ```
 
 모듈 디렉토리 app/libs 폴더에 
-dpad_aos_sdk_2.0.0-release.aar
-okgo-release.aar
-okgo_extends-release.aar
+*dpad_aos_sdk_2.0.0-release.aar*
+*okgo-release.aar*
+*okgo_extends-release.aar*
 파일을 추가합니다.
 
 
 ##  사용방법 
 
 ```
-//초기화 
-DPAD.init(this, "-", "-", System.currentTimeMillis().toString());
+    //초기화 
+    DPAD.init(this, "-", "-", System.currentTimeMillis().toString());
  
 ```
 ```
-  // 적립화면 열기 
-            DPAD.showOfferwall(this@MainActivity)
+    // 적립화면 열기 
+    DPAD.showOfferwall(this@MainActivity)
 ```
